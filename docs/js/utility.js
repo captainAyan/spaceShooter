@@ -109,4 +109,4 @@ var Utility = function () {
 
 // Creating a utility object so for static usage
 
-let util = new Utility();
+var util = new Utility();
