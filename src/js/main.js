@@ -1,20 +1,27 @@
 var setup = util.setup();
 var width = setup.width;
 var height = setup.height;
+var canvas = setup.canvas;
 var c = setup.context;
 
+var total_frames = 0;
 
 // Events
 
-document.querySelector(".btn").addEventListener('click', function() {
-    game.start();
-});
 document.querySelector("canvas").addEventListener('touchmove', function(event) {
     try {
-        game.ship.move(event);
+        game.ship.move(event,true);
     }
     catch(e) {}
 });
+
+document.querySelector("canvas").addEventListener('mousemove', function(event) {
+    try {
+        game.ship.move(event,false);
+    }
+    catch(e) {}
+});
+
 document.querySelector("canvas").addEventListener('click',function(event) {
     if(game.over) {
         game.reset();
@@ -36,29 +43,36 @@ var game = new Game();
 
 function init() {
     // initialize var
-    game.ship = new Ship((width/2),(height-100),20);
     game.bullets = [];
     game.enemys = [];
+    game.stars = []
 
-    for(var i =1; i< 10; i++) {
-        var radius = util.randomIntFromRange(5,30);
+    for(var i = 0; i<30; i++) {
+        game.stars.push(new Star(position));
+    }
+
+    for(var i =0; i<5; i++) {
+        var radius = util.randomIntFromRange(20,70);
 
         var position = {
             x : util.randomIntFromRange(0+radius , width-radius),
-            y : util.randomIntFromRange(-(height/2) ,0)
+            y : util.randomIntFromRange(-(height) ,0)
         }
         game.enemys.push(new Enemy(position,radius));
     }
+
+    game.ship = new Ship((width/2),(height-100));
 }
 
 // animation loop
-var total_frames = 0;
 function animate() {
     requestAnimationFrame(animate);
     c.clearRect(0, 0, width, height);
     total_frames += 1;
 
-    game.ship.update();
+    game.stars.forEach((star)=> {
+        star.update();
+    });
 
     game.bullets.forEach(function(bullet,i) {
         if(bullet.position.y > 0) {
@@ -76,6 +90,8 @@ function animate() {
         }
     });
 
+    game.ship.update();
+
     game.enemys.forEach(function(enemy) {
         if (enemy.position.y > height+enemy.radius) {
             enemy.reset();
@@ -92,9 +108,10 @@ function animate() {
 }
     
 // info reporting
+var last_fps = 0;
 function info() {
     setInterval(function() {
-        document.getElementById('fps').innerHTML = total_frames;
-        total_frames = 0;
+        document.getElementById('fps').innerHTML = total_frames - last_fps;
+        last_fps = total_frames;
     },1000);
 }
