@@ -2,6 +2,7 @@ var Game = function() {
 	this.over = false;
 	this.bullets = [];
 	this.enemys = [];
+	this.stars = [];
 	this.ship = undefined;
 	this.point = 0;
 
@@ -11,6 +12,7 @@ var Game = function() {
 			info()
 			animate();
 			document.querySelector('.btn-set').style.display = 'none';
+			canvas.style.cursor= "none";
 		}
 	}
 
@@ -21,13 +23,17 @@ var Game = function() {
 		this.bullets.forEach(function(bullet) {
 			bullet.dy = 0;
 		});
+		this.stars.forEach(function(star) {
+			star.dy = 0;
+		});
     	document.getElementById('point').innerHTML = this.point +" game over";
 	}
 
 	this.reset = function() {
-		enemys = undefined;
-	    bullets = [];
-	    ship = [];
+		this.enemys = [];
+	    this.bullets = [];
+	    this.stars = [];
+	    this.ship = undefined;
 	    this.point = 0;
 	    this.over = false;
 	    document.getElementById('point').innerHTML = 0;
@@ -35,7 +41,7 @@ var Game = function() {
 	}
 
 	this.addPoint = function(size) {
-    	(size <= 15 ? this.point+=2 : this.point+=5);
+    	(size <= 25 ? this.point+=2 : this.point+=5);
     	document.getElementById('point').innerHTML = this.point;
 	}
 
