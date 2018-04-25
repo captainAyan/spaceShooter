@@ -24,9 +24,12 @@ var Utility = function () {
 			document.querySelector('body').style.padding = "0px";
 			this.canvas.height = this.screen.height;
 			this.canvas.width = this.screen.width;
-			this.canvas.style.background = "#000";
+
+			// Disableing the javascript background, using css gradients currently
+			//this.canvas.style.background = "#000";
 
 			return {
+				canvas:this.canvas,
 				context:this.context,
 				width:this.screen.width,
 				height:this.screen.height
@@ -98,12 +101,7 @@ var Utility = function () {
 	    var dist = this.distance(x1,y1,x2,y2);
 	    var sum_radius = a.radius + b.radius;
 
-	    if ((dist - sum_radius) < 0) {
-	        return true;
-	    }
-	    else {
-	        return false;
-	    }
+	    return (dist - sum_radius) < 0
 	}
 }
 
