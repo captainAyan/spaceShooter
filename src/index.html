@@ -8,9 +8,14 @@
 </head>
 <body>
     <canvas></canvas>
+    <img src="assets/ship.png" id="ship" style="display: none;">
+    <img src="assets/flame_sprite.png" id="flame" style="display: none;">
+    <img src="assets/ast_1.png" id="ast_1" style="display: none;">
+    <img src="assets/ast_2.png" id="ast_2" style="display: none;">
+    <img src="assets/ast_3.png" id="ast_3" style="display: none;">
     <p class="btn-set">
-        <button class="btn">Start</button>
-        <a href="https://github.com/captainAyan/spaceShooter" class="link">Github Repo</a>
+        <button class="btn" onclick="game.start()">Start</button>
+        <a href="https://github.com/captainAyan/spaceShooter" target="_blank" class="link">Github Repo</a>
     </p>
     <p class="info">
         <span id="fps">0</span> <&middot; Fps <br>
