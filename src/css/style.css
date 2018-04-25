@@ -1,5 +1,8 @@
 body {
     font-family: sans-serif;
+    background: #000000;
+    background: -webkit-linear-gradient(to bottom, #000000, #53346d);
+    background: linear-gradient(to bottom, #000000, #53346d);
 }
 
 .info {
