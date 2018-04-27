@@ -1,8 +1,13 @@
-var setup = util.setup();
-var width = setup.width;
-var height = setup.height;
-var canvas = setup.canvas;
-var c = setup.context;
+// setting up canvas and constants
+
+const setup = util.setup();
+const width = setup.width;
+const height = setup.height;
+const canvas = setup.canvas;
+const c = setup.context;
+
+// creating constant game object
+const game = new Game();
 
 var total_frames = 0;
 
@@ -11,13 +16,6 @@ var total_frames = 0;
 document.querySelector("canvas").addEventListener('touchmove', function(event) {
     try {
         game.ship.move(event,true);
-    }
-    catch(e) {}
-});
-
-document.querySelector("canvas").addEventListener('mousemove', function(event) {
-    try {
-        game.ship.move(event,false);
     }
     catch(e) {}
 });
@@ -36,9 +34,6 @@ document.querySelector("canvas").addEventListener('click',function(event) {
 
 
 // Real code for the game
-
-var game = new Game();
-
 // Initialization
 
 function init() {
