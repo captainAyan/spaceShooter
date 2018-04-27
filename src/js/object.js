@@ -145,7 +145,7 @@ function Enemy(position,radius) {
  */
 
 function Star() {
-    this.radius = util.randomIntFromRange(1,2);
+    this.radius = util.randomIntFromRange(100,200)/100;
     this.dr = 1;
     this.dy = this.radius /5;
     this.position = {
@@ -167,7 +167,7 @@ function Star() {
             this.dr = -(this.dr);
         }
         this.radius += (this.dr/50);
-        this.position.y += this.dy;
+        this.position.y += this.dy*10;
         if(this.position.y > height) {
             this.position.x = util.randomIntFromRange(0 , width);
             this.position.y = -10;
