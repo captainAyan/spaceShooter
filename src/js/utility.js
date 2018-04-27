@@ -107,4 +107,4 @@ var Utility = function () {
 
 // Creating a utility object so for static usage
 
-var util = new Utility();
+const util = new Utility();
