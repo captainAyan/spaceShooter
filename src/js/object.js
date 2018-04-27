@@ -34,8 +34,10 @@ function Ship(x,y) {
 
     this.draw = function() {
         // draw
+        // flame
+        c.drawImage(this.flame.sprite,this.flame.sx,this.flame.sy,this.flame.sWidth,this.flame.sHeight,this.position.x-15,this.position.y+25,30,30);
+        // ship
         c.drawImage(this.shipImage, this.position.x-30, this.position.y-30, 60, 60);
-        c.drawImage(this.flame.sprite,this.flame.sx,this.flame.sy,this.flame.sWidth,this.flame.sHeight,this.position.x-15,this.position.y+30,30,30);
     }
 
     this.update = function() {
@@ -48,15 +50,7 @@ function Ship(x,y) {
     }
 
     this.move = function(data,type) {
-        if(!(this.position.x < 0 || this.position.x > width)) {
-            if(type) {
-                this.position.x = event.touches[0].clientX;
-                //this.flame.cx = this.position.x-15;
-            }
-            else {
-                this.position.x = event.clientX;
-            }
-        }
+        this.position.x = event.touches[0].clientX;
     }
 }
 
@@ -87,7 +81,7 @@ function Bullet(x) {
     this.update = function() {
         // update
         this.position.y -= this.dy;
-        this.draw()
+        this.draw();
     }
 }
 
