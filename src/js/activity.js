@@ -3,6 +3,7 @@ var Game = function() {
 	this.bullets = [];
 	this.enemys = [];
 	this.stars = [];
+	this.blasts = [];
 	this.ship = undefined;
 	this.point = 0;
 
@@ -32,6 +33,7 @@ var Game = function() {
 		this.enemys = [];
 	    this.bullets = [];
 	    this.stars = [];
+	    this.blasts = [];
 	    this.ship = undefined;
 	    this.point = 0;
 	    this.over = false;

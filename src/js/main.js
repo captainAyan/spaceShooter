@@ -41,7 +41,7 @@ function init() {
     game.bullets = [];
     game.enemys = [];
     game.stars = [];
-    blasts = [];
+    game.blasts = [];
 
     for(var i = 0; i<20; i++) {
         game.stars.push(new Star(position));
@@ -75,7 +75,7 @@ function animate() {
             game.enemys.forEach(function(enemy) {
                 if(util.hits(bullet,enemy)) {
                     game.addPoint(enemy.radius);
-                    blasts.push(new Blast(enemy.position,enemy.radius));
+                    game.blasts.push(new Blast(enemy.position,enemy.radius));
                     enemy.reset();
                     game.bullets.splice(i, 1);
                 }
@@ -103,9 +103,9 @@ function animate() {
         }
     });
 
-    blasts.forEach((blast,i)=> {
+    game.blasts.forEach((blast,i)=> {
         if (blast.finished) {
-            blasts.splice(i,1);
+            game.blasts.splice(i,1);
         }
         else {
             blast.update();
