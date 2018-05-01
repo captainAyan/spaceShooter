@@ -84,6 +84,7 @@ function Bullet(x) {
         this.position.y -= this.dy;
         this.draw();
     }
+    util.sound.shoot();
 }
 
 
@@ -129,6 +130,12 @@ function Enemy(position,radius) {
         this.position.x = util.randomIntFromRange(0+this.radius , width-this.radius);
         this.position.y = util.randomIntFromRange(-(height/2) ,0);
         this.asteroidImage = this.images[util.randomIntFromRange(0,2)];
+        this.radius = (util.randomIntFromRange(20,70))/2;
+        this.dim = {
+            width: this.radius*2,
+            height: this.radius*2
+        }
+        this.dy = 0.1*this.radius;
 
         this.update();
     }
@@ -200,6 +207,8 @@ function Blast(pos,radius) {
         sWidth : 23040/90,
         sHeight : 256
     };
+
+    util.sound.blast(1.0);
 
     this.draw = function() {
         // drawing the explosion

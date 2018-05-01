@@ -14,6 +14,8 @@ var Game = function() {
 			document.querySelector('.btn-set').style.display = 'none';
 			canvas.style.cursor= "none";
 		}
+		util.sound.blast(0.0);
+		util.sound.bg();
 	}
 
 	this.stop = function() {

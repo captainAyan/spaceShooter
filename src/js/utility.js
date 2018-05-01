@@ -25,9 +25,6 @@ var Utility = function () {
 			this.canvas.height = this.screen.height;
 			this.canvas.width = this.screen.width;
 
-			// Disableing the javascript background, using css gradients currently
-			//this.canvas.style.background = "#000";
-
 			return {
 				canvas:this.canvas,
 				context:this.context,
@@ -102,6 +99,43 @@ var Utility = function () {
 
 	    return (dist - sum_radius) < 0
 	}
+
+	/**
+	 * sound
+	 *
+	 * -- Makes sounds --
+	 */
+	var Sound = function() {
+		// audio setups
+		// shoot sound
+		var shoot = new Audio();
+		shoot.src = "assets/sound/shoot.wav";
+		// blast sound
+		var blast = new Audio();
+		blast.src = "assets/sound/blast.ogg";
+		// bg music
+		var bg = new Audio();
+		bg.src = "assets/sound/bg.ogg";
+
+		// player functions
+		// shoot sound player
+		this.shoot = function() {
+		   	shoot.play();
+		}
+		// blast sound player
+		this.blast = function(vol) {
+			blast.volume = vol;
+			blast.pause();
+			blast.currentTime = 0;
+			blast.play();
+		}
+		//bg music player
+		this.bg = function() {
+			bg.play();
+		}
+	}
+	this.sound = new Sound();
+	
 }
 
 // Creating a utility object so for static usage

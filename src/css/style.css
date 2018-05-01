@@ -61,6 +61,16 @@ body {
     outline: none;
 }
 
+.btn-set span {
+    position: fixed;
+    top: 65%;
+    margin: 0px auto;
+    width: 100%;
+    text-align: center;
+    color: white;
+    outline: none;
+}
+
 img {
     display: none;
 }
