@@ -40,9 +40,10 @@ function init() {
     // initialize var
     game.bullets = [];
     game.enemys = [];
-    game.stars = []
+    game.stars = [];
+    blasts = [];
 
-    for(var i = 0; i<30; i++) {
+    for(var i = 0; i<20; i++) {
         game.stars.push(new Star(position));
     }
 
@@ -69,11 +70,12 @@ function animate() {
         star.update();
     });
 
-    game.bullets.forEach(function(bullet,i) {
+    game.bullets.forEach((bullet,i)=> {
         if(bullet.position.y > 0) {
             game.enemys.forEach(function(enemy) {
                 if(util.hits(bullet,enemy)) {
                     game.addPoint(enemy.radius);
+                    blasts.push(new Blast(enemy.position,enemy.radius));
                     enemy.reset();
                     game.bullets.splice(i, 1);
                 }
@@ -87,7 +89,7 @@ function animate() {
 
     game.ship.update();
 
-    game.enemys.forEach(function(enemy) {
+    game.enemys.forEach((enemy)=> {
         if (enemy.position.y > height+enemy.radius) {
             enemy.reset();
         }
@@ -100,13 +102,13 @@ function animate() {
             enemy.update();
         }
     });
-}
-    
-// info reporting
-var last_fps = 0;
-function info() {
-    setInterval(function() {
-        document.getElementById('fps').innerHTML = total_frames - last_fps;
-        last_fps = total_frames;
-    },1000);
+
+    blasts.forEach((blast,i)=> {
+        if (blast.finished) {
+            blasts.splice(i,1);
+        }
+        else {
+            blast.update();
+        }
+    });
 }

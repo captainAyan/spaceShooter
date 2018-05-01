@@ -2,11 +2,11 @@
 
 
 /**
+ *
  * Ship class
  * 
  * @prop {float | int} x ship's x position.
  * @prop {float | int} y ship's y position.
- * @prop {float | int} radius ship's radius.
  *
  */
 function Ship(x,y) {
@@ -15,7 +15,6 @@ function Ship(x,y) {
         y:y
     }
     this.radius = 7;
-    this.color = "#d5d5d5";
     this.shipImage = document.getElementById('ship');
 
     // ship's flame
@@ -26,7 +25,7 @@ function Ship(x,y) {
         sx : 0,
         sy : 0,
         // frame size
-        sWidth : 242,
+        sWidth : 728/3,
         sHeight : 258
     };
 
@@ -42,8 +41,8 @@ function Ship(x,y) {
 
     this.update = function() {
         // update
-        if (total_frames % 8 == 0) {
-            this.currentFrame = ++total_frames % 3;
+        if (total_frames % 5 == 0) {
+            this.currentFrame = total_frames % 3;
             this.flame.sx = this.currentFrame * this.flame.sWidth;
         }
         this.draw();
@@ -56,9 +55,11 @@ function Ship(x,y) {
 
 
 /**
+ *
  * Bullet class
  * 
  * @prop {float | int} x bullet's x position.
+ *
  */
 function Bullet(x) {
     this.position = {
@@ -87,6 +88,7 @@ function Bullet(x) {
 
 
 /**
+ *
  * enemy class
  *
  * @prop {object} position enemy's x and y position.
@@ -114,7 +116,6 @@ function Enemy(position,radius) {
 
     this.draw = function() {
         // draw
-
         c.drawImage(this.asteroidImage, this.position.x-(this.radius), this.position.y-(this.radius), this.dim.width, this.dim.height);
     }
 
@@ -128,14 +129,14 @@ function Enemy(position,radius) {
         this.position.x = util.randomIntFromRange(0+this.radius , width-this.radius);
         this.position.y = util.randomIntFromRange(-(height/2) ,0);
         this.asteroidImage = this.images[util.randomIntFromRange(0,2)];
+
         this.update();
     }
 }
 
 
 /**
- * starField class
- *
+ * star class
  */
 
 function Star() {
@@ -167,5 +168,53 @@ function Star() {
             this.position.y = -10;
         }
         this.draw();
+    }
+}
+
+/**
+ *
+ * blast class
+ *
+ * @prop {object} position enemy's x and y position.
+ * @prop {float | int} radius radius of enemy.
+ *
+ */
+function Blast(pos,radius) {
+    this.position = {
+        x : pos.x,
+        y : pos.y
+    }
+    this.radius = radius;
+
+    this.finished = false;
+
+    this.it = 5;
+
+    this.explostion = {
+        // the image
+        sprite : document.getElementById('blast'),
+        // where on the sprite you want to draw
+        sx : 0,
+        sy : 0,
+        // frame size
+        sWidth : 23040/90,
+        sHeight : 256
+    };
+
+    this.draw = function() {
+        // drawing the explosion
+        c.drawImage(this.explostion.sprite,this.explostion.sx,this.explostion.sy,this.explostion.sWidth,this.explostion.sHeight,this.position.x-this.radius*2,(this.position.y-this.radius*2)+10,this.radius*4,this.radius*4);
+    }
+
+    this.update = function() {
+        this.currentFrame = this.it % 90;
+        this.explostion.sx = this.currentFrame * this.explostion.sWidth;
+        this.draw();
+        if (this.it <= 75) {
+            this.it += 1
+        }
+        else {
+            this.finished = true;
+        }
     }
 }

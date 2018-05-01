@@ -9,7 +9,6 @@ var Game = function() {
 	this.start = function() {
 		if(!this.over) {
 			this.reset();
-			info()
 			animate();
 			document.querySelector('.btn-set').style.display = 'none';
 			canvas.style.cursor= "none";
