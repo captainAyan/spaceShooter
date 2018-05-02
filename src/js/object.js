@@ -49,7 +49,12 @@ function Ship(x,y) {
     }
 
     this.move = function(data,type) {
-        this.position.x = event.touches[0].clientX;
+        if(type == "touch") {
+            this.position.x = data.touches[0].clientX;
+        }
+        else if(type == "key") {
+            this.position.x += data;
+        }
     }
 }
 
