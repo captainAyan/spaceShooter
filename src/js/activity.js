@@ -48,9 +48,8 @@ var Game = function() {
     	(size <= 25 ? this.point+=2 : this.point+=5);
 		document.getElementById('point').innerHTML = this.point;
 		
-		if((game.point % 10 >= 0) && (game.point % 10 <= 2) && (game.point > 10)) {
-            GLOBAL_WEIGHT += 0.2;
-            console.log('weight up');
+		if((game.point % 30 >= 0) && (game.point % 30 <= 2) && (game.point > 30) && GLOBAL_WEIGHT < 4) {
+			GLOBAL_WEIGHT += 0.1;
         }
 	}
 
