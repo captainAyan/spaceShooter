@@ -48,7 +48,7 @@ var Game = function() {
     	(size <= 25 ? this.point+=2 : this.point+=5);
 		document.getElementById('point').innerHTML = this.point;
 		
-		if((game.point % 30 >= 0) && (game.point % 30 <= 2) && (game.point > 30) && GLOBAL_WEIGHT < 4) {
+		if((game.point % 30 >= 0) && (game.point % 30 <=5) && (game.point > 30) && GLOBAL_WEIGHT < 4) {
 			GLOBAL_WEIGHT += 0.1;
 			window.alert("gup");
         }
