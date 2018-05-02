@@ -10,6 +10,8 @@ var game = new Game();
 
 var total_frames = 0;
 
+var GLOBAL_WEIGHT = 1;
+
 // Events
 
 document.querySelector("canvas").addEventListener('touchmove', function(event) {

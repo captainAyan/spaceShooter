@@ -38,14 +38,22 @@ var Game = function() {
 	    this.blasts = [];
 	    this.ship = undefined;
 	    this.point = 0;
-	    this.over = false;
+		this.over = false;
+		GLOBAL_WEIGHT = 0;
 	    document.getElementById('point').innerHTML = 0;
 	    init();
 	}
 
 	this.addPoint = function(size) {
     	(size <= 25 ? this.point+=2 : this.point+=5);
-    	document.getElementById('point').innerHTML = this.point;
+		document.getElementById('point').innerHTML = this.point;
+		
+		if((game.point % 10 >= 0) && (game.point % 10 <= 2) && (game.point > 10)) {
+            GLOBAL_WEIGHT += 0.2;
+            console.log('weight up');
+        }
 	}
+
+
 
 }

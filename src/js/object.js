@@ -126,8 +126,8 @@ function Enemy(position,radius) {
     }
 
     this.update = function() {
-        // update
-        this.position.y += this.dy;
+        // update        
+        this.position.y += (this.dy*GLOBAL_WEIGHT);
         this.draw();
     }
 
