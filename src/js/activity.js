@@ -50,6 +50,7 @@ var Game = function() {
 		
 		if((game.point % 30 >= 0) && (game.point % 30 <= 2) && (game.point > 30) && GLOBAL_WEIGHT < 4) {
 			GLOBAL_WEIGHT += 0.1;
+			window.alert("gup");
         }
 	}
 
