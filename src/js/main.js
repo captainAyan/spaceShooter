@@ -1,10 +1,9 @@
 // setting up canvas and constants
 
 const SETUP = util.setup();
-const WIDTH = setup.width;
-const HEIGHT = setup.height;
-var canvas = setup.canvas;
-var c = setup.context;
+const WIDTH = SETUP.width;
+const HEIGHT = SETUP.height;
+var c = SETUP.canvas.getContext("2d");
 
 // creating constant game object
 var game = new Game();

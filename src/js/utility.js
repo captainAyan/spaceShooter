@@ -14,7 +14,6 @@ var Utility = function () {
 	this.setup = function() {
 		try {
 			this.canvas = document.querySelector('canvas');
-			this.context = this.canvas.getContext('2d');
 			this.screen = {
 				width : window.innerWidth,
 				height : window.innerHeight
@@ -27,7 +26,6 @@ var Utility = function () {
 
 			return {
 				canvas:this.canvas,
-				context:this.context,
 				width:this.screen.width,
 				height:this.screen.height
 			};

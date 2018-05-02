@@ -12,7 +12,7 @@ var Game = function() {
 			this.reset();
 			animate();
 			document.querySelector('.btn-set').style.display = 'none';
-			canvas.style.cursor= "none";
+			SETUP.canvas.style.cursor= "none";
 		}
 		util.sound.blast(0.0);
 		util.sound.bg();
