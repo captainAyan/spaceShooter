@@ -69,7 +69,7 @@ function Ship(x,y) {
 function Bullet(x) {
     this.position = {
         x : x,
-        y : height-130
+        y : HEIGHT-130
     }
     this.radius = 3;
     this.dy = 5;
@@ -132,8 +132,8 @@ function Enemy(position,radius) {
     }
 
     this.reset = function() {
-        this.position.x = util.randomIntFromRange(0+this.radius , width-this.radius);
-        this.position.y = util.randomIntFromRange(-(height/2) ,0);
+        this.position.x = util.randomIntFromRange(0+this.radius , WIDTH-this.radius);
+        this.position.y = util.randomIntFromRange(-(HEIGHT/2) ,0);
         this.asteroidImage = this.images[util.randomIntFromRange(0,2)];
         this.radius = (util.randomIntFromRange(20,70))/2;
         this.dim = {
@@ -156,8 +156,8 @@ function Star() {
     this.dr = 1;
     this.dy = this.radius /5;
     this.position = {
-        x : util.randomIntFromRange(0 , width),
-        y : util.randomIntFromRange(0 , height)
+        x : util.randomIntFromRange(0 , WIDTH),
+        y : util.randomIntFromRange(0 , HEIGHT)
     }
 
     this.draw = function() {
@@ -175,8 +175,8 @@ function Star() {
         }
         this.radius += (this.dr/50);
         this.position.y += this.dy*10;
-        if(this.position.y > height) {
-            this.position.x = util.randomIntFromRange(0 , width);
+        if(this.position.y > HEIGHT) {
+            this.position.x = util.randomIntFromRange(0 , WIDTH);
             this.position.y = -10;
         }
         this.draw();

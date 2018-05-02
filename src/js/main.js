@@ -1,13 +1,13 @@
 // setting up canvas and constants
 
-const setup = util.setup();
-const width = setup.width;
-const height = setup.height;
-const canvas = setup.canvas;
-const c = setup.context;
+const SETUP = util.setup();
+const WIDTH = setup.width;
+const HEIGHT = setup.height;
+var canvas = setup.canvas;
+var c = setup.context;
 
 // creating constant game object
-const game = new Game();
+var game = new Game();
 
 var total_frames = 0;
 
@@ -67,19 +67,19 @@ function init() {
         var radius = util.randomIntFromRange(20,70);
 
         var position = {
-            x : util.randomIntFromRange(0+radius , width-radius),
-            y : util.randomIntFromRange(-(height) ,0)
+            x : util.randomIntFromRange(0+radius , WIDTH-radius),
+            y : util.randomIntFromRange(-(HEIGHT) ,0)
         }
         game.enemys.push(new Enemy(position,radius));
     }
 
-    game.ship = new Ship((width/2),(height-100));
+    game.ship = new Ship((WIDTH/2),(HEIGHT-100));
 }
 
 // animation loop
 function animate() {
     requestAnimationFrame(animate);
-    c.clearRect(0, 0, width, height);
+    c.clearRect(0, 0, WIDTH, HEIGHT);
     total_frames += 1;
 
     game.stars.forEach((star)=> {
@@ -106,7 +106,7 @@ function animate() {
     game.ship.update();
 
     game.enemys.forEach((enemy)=> {
-        if (enemy.position.y > height+enemy.radius) {
+        if (enemy.position.y > HEIGHT+enemy.radius) {
             enemy.reset();
         }
         else if(util.hits(enemy,game.ship)) {
