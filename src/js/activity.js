@@ -39,7 +39,7 @@ var Game = function() {
 	    this.ship = undefined;
 	    this.point = 0;
 		this.over = false;
-		GLOBAL_WEIGHT = 0;
+		GLOBAL_WEIGHT = 1;
 	    document.getElementById('point').innerHTML = 0;
 	    init();
 	}
