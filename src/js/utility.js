@@ -134,16 +134,6 @@ var Utility = function () {
 		// -- Preloader --
 
 		this.readyCall = 1;
-		this.ready = function() {
-			/*if(this.readyCall != 3) {
-				this.readyCall += 1;
-				util.debugger.err(this.readyCall);
-			}
-			else {
-				util.debugger.log("ready!");
-			}*/
-			console.log(this);
-		}
 
 		// -- shoot sound --
 		var shoot = new Audio();

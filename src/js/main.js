@@ -11,7 +11,7 @@ var game = new Game();
 var total_frames = 0;
 
 window.onload = () => {
-    util.sound.getReady();
+    util.sound.preloader();
 }
 
 var GLOBAL_WEIGHT = 1;
