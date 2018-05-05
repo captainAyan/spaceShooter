@@ -3,6 +3,31 @@ var Utility = function () {
 	// Utility functions
 
 	/**
+	 * debugger
+	 *
+	 * -- debugger is object which takes dom object --
+	 *
+	 * @param {object} dom object.
+	 * @return {null}
+	 *
+	 */
+	var Debugger = function(dom) {
+		this.object = dom;
+		this.log = function(data) {
+			this.object.innerHTML = ""
+			this.object.innerHTML = data;
+			console.log(data);
+		}
+		this.err = function(data) {
+			this.object.innerHTML = ""
+			this.object.innerHTML = "<span style='color:red;'>"+data+"</span>";
+			console.log(data);
+		}
+	}
+
+	this.debugger = new Debugger(document.querySelector('#debugger'));
+
+	/**
 	 * setup
 	 *
 	 * -- Sets up canvas and document for the game --
@@ -104,30 +129,56 @@ var Utility = function () {
 	 * -- Makes sounds --
 	 */
 	var Sound = function() {
-		// audio setups
-		// shoot sound
+		/* audio setups */
+
+		// -- Preloader --
+
+		this.readyCall = 1;
+		this.ready = function() {
+			/*if(this.readyCall != 3) {
+				this.readyCall += 1;
+				util.debugger.err(this.readyCall);
+			}
+			else {
+				util.debugger.log("ready!");
+			}*/
+			console.log(this);
+		}
+
+		// -- shoot sound --
 		var shoot = new Audio();
 		shoot.src = "assets/sound/shoot.wav";
-		// blast sound
+		// -- blast sound --
 		var blast = new Audio();
 		blast.src = "assets/sound/blast.ogg";
-		// bg music
+		// -- bg music --
 		var bg = new Audio();
 		bg.src = "assets/sound/bg.ogg";
+		bg.addEventListener('ended', function() {
+		    this.currentTime = 0;
+		    this.play();
+		}, false);
 
-		// player functions
-		// shoot sound player
+		this.preloader = function() {
+			bg.load();
+			shoot.load();
+			blast.load();
+			util.debugger.log("getting ready");
+		}
+
+		/* player functions */
+		// --shoot sound player --
 		this.shoot = function() {
 		   	shoot.play();
 		}
-		// blast sound player
+		// -- blast sound player --
 		this.blast = function(vol) {
 			blast.volume = vol;
 			blast.pause();
 			blast.currentTime = 0;
 			blast.play();
 		}
-		//bg music player
+		// -- bg music player --
 		this.bg = function() {
 			bg.play();
 		}
@@ -136,6 +187,6 @@ var Utility = function () {
 	
 }
 
-// Creating a utility object so for static usage
+// Creating a utility object
 
 const util = new Utility();

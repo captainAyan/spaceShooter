@@ -10,6 +10,10 @@ var game = new Game();
 
 var total_frames = 0;
 
+window.onload = () => {
+    util.sound.getReady();
+}
+
 var GLOBAL_WEIGHT = 1;
 
 // Events
