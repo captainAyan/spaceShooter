@@ -14,14 +14,8 @@ var Utility = function () {
 	var Debugger = function(dom) {
 		this.object = dom;
 		this.log = function(data) {
-			this.object.innerHTML = ""
-			this.object.innerHTML = data;
-			console.log(data);
-		}
-		this.err = function(data) {
-			this.object.innerHTML = ""
-			this.object.innerHTML = "<span style='color:red;'>"+data+"</span>";
-			console.log(data);
+			this.object.innerHTML = this.object.innerHTML + "<br>" + data;
+			console.log("logger -> " + data);
 		}
 	}
 
@@ -132,8 +126,16 @@ var Utility = function () {
 		/* audio setups */
 
 		// -- Preloader --
-
-		this.readyCall = 1;
+		this.readyCall = 0;
+		this.ready= () => {
+			if(this.readyCall != 3) {
+				this.readyCall += 1;
+				util.debugger.log('readyCall -> ' + this.readyCall);
+			}
+			else {
+				util.debugger.log('ready');
+			}
+		}
 
 		// -- shoot sound --
 		var shoot = new Audio();
@@ -153,7 +155,19 @@ var Utility = function () {
 			bg.load();
 			shoot.load();
 			blast.load();
-			util.debugger.log("getting ready");
+			util.debugger.log("preloading");
+			if((shoot.readyState == 4) && (blast.readyState == 4) && (bg.readyState == 4)) {
+				util.debugger.log("shoot->"+shoot.readyState+" blast->"+blast.readyState+" bg->"+bg.readyState + " --met--");
+			}
+			else {
+				util.debugger.log("shoot->"+shoot.readyState+" blast->"+blast.readyState+" bg->"+bg.readyState + " --else--");
+				util.debugger.log('else call');
+				setTimeout(this.preloader,1000);
+			}
+		}
+
+		this.loadStatus = () => {
+			util.debugger.log("shoot->"+shoot.readyState+" blast->"+blast.readyState+" bg->"+bg.readyState + " --call--");
 		}
 
 		/* player functions */
