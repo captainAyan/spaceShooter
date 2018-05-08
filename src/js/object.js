@@ -49,12 +49,15 @@ function Ship(x,y) {
     }
 
     this.move = function(data,type) {
-        if(type == "touch") {
-            this.position.x = data.touches[0].clientX;
+        try {
+            if(type == "touch") {
+                this.position.x = data.touches[0].clientX;
+            }
+            else if(type == "key") {
+                this.position.x += data;
+            }
         }
-        else if(type == "key") {
-            this.position.x += data;
-        }
+        catch(e) {}
     }
 }
 
@@ -174,7 +177,7 @@ function Star() {
             this.dr = -(this.dr);
         }
         this.radius += (this.dr/50);
-        this.position.y += this.dy*10;
+        this.position.y += this.dy*5;
         if(this.position.y > HEIGHT) {
             this.position.x = util.randomIntFromRange(0 , WIDTH);
             this.position.y = -10;
