@@ -43,15 +43,18 @@ document.onkeydown = function(e) {
      * s - to move right
      * space - to shoot bullets
      */
-    if(e.keyCode == 65) { // a
-        game.ship.move(-5,"key");
+    try {
+        if(e.keyCode == 65) { // a
+            game.ship.move(-5,"key");
+        }
+        else if(e.keyCode == 83) { // s
+            game.ship.move(5,"key");
+        }
+        else if(e.keyCode == 32) { // space
+            game.bullets.push(new Bullet(game.ship.position.x));
+        }
     }
-    else if(e.keyCode == 83) { // s
-        game.ship.move(5,"key");
-    }
-    else if(e.keyCode == 32) { // space
-        game.bullets.push(new Bullet(game.ship.position.x));
-    }
+    catch(e) {}
 }
 
 // Real code for the game
