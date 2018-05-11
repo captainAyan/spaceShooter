@@ -124,18 +124,6 @@ var Utility = function () {
 	var Sound = function() {
 		/* audio setups */
 
-		// -- Preloader --
-		this.readyCall = 0;
-		this.ready= () => {
-			if(this.readyCall != 3) {
-				this.readyCall += 1;
-				util.debugger.log('readyCall -> ' + this.readyCall);
-			}
-			else {
-				util.debugger.log('ready');
-			}
-		}
-
 		// -- shoot sound --
 		var shoot = new Audio();
 		shoot.src = "assets/sound/shoot.wav";
@@ -150,6 +138,9 @@ var Utility = function () {
 		    this.play();
 		}, false);
 
+
+		// -- Preloader --
+		/* This preloader was required to load all audios before the game starts */
 		this.preloader = function() {
 			bg.load();
 			shoot.load();
@@ -165,10 +156,6 @@ var Utility = function () {
 				}
 			}
 			this.preload_check();
-		}
-
-		this.loadStatus = () => {
-			util.debugger.log("shoot->"+shoot.readyState+" blast->"+blast.readyState+" bg->"+bg.readyState + " --call--");
 		}
 
 		/* player functions */
