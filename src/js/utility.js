@@ -1,4 +1,4 @@
-var Utility = function () {
+;var Utility = function () {
 
 	// Utility functions
 
@@ -124,21 +124,6 @@ var Utility = function () {
 	var Sound = function() {
 		/* audio setups */
 
-<<<<<<< HEAD
-=======
-		// -- Preloader --
-		this.readyCall = 0;
-		this.ready= () => {
-			if(this.readyCall != 3) {
-				this.readyCall += 1;
-				util.debugger.log('readyCall -> ' + this.readyCall);
-			}
-			else {
-				util.debugger.log('ready');
-			}
-		}
-
->>>>>>> ba27b70be5a86cbcd58a063f57baeedfbdfe1cdf
 		// -- shoot sound --
 		var shoot = new Audio();
 		shoot.src = "assets/sound/shoot.wav";
@@ -171,13 +156,6 @@ var Utility = function () {
 				}
 			}
 			this.preload_check();
-<<<<<<< HEAD
-=======
-		}
-
-		this.loadStatus = () => {
-			util.debugger.log("shoot->"+shoot.readyState+" blast->"+blast.readyState+" bg->"+bg.readyState + " --call--");
->>>>>>> ba27b70be5a86cbcd58a063f57baeedfbdfe1cdf
 		}
 
 		/* player functions */

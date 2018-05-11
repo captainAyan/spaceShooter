@@ -216,7 +216,7 @@ function Blast(pos,radius) {
         sHeight : 256
     };
 
-    util.sound.blast();
+    util.sound.blast(1.0);
 
     this.draw = function() {
         // drawing the explosion
