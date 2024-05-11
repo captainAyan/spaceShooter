@@ -9,6 +9,9 @@
     <a href="https://github.com/captainAyan/spaceShooter/issues">Report Bug 😓</a>
   </p>
 </p>
+<p align="center">
+<a href="https://github.com/captainAyan/spaceShooter"><img src="https://raw.githubusercontent.com/captainAyan/spaceShooter/master/poster.png"></a>
+</p>
 
 ## About
 Space Shooter is a simple HTML5 canvas game. This implementation of the game 
