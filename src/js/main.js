@@ -10,29 +10,21 @@ var game = new Game();
 
 var total_frames = 0;
 
-window.onload = () => {
-    util.sound.preloader();
-}
+window.onload = () => util.sound.preloader();
 
 var GLOBAL_WEIGHT = 1;
 
 // Events
 
 document.querySelector("canvas").addEventListener('touchmove', function(event) {
-    try {
-        game.ship.move(event,"touch");
-    }
+    try {game.ship.move(event,"touch");}
     catch(e) {}
 });
 
 document.querySelector("canvas").addEventListener('click',function(event) {
-    if(game.over) {
-        game.reset();
-    }
+    if(game.over) game.reset();
     else {
-        try {
-            game.bullets.push(new Bullet(game.ship.position.x));
-        }
+        try {game.bullets.push(new Bullet(game.ship.position.x));}
         catch(e) {}
     }
 });
@@ -90,13 +82,13 @@ function animate() {
     c.clearRect(0, 0, WIDTH, HEIGHT);
     total_frames += 1;
 
-    game.stars.forEach((star)=> {
-        star.update();
-    });
+    // movement of stars
+    game.stars.forEach((star)=> star.update()); 
 
+    // movement of bullets and collision detection
     game.bullets.forEach((bullet,i)=> {
         if(bullet.position.y > 0) {
-            game.enemys.forEach(function(enemy) {
+            game.enemys.forEach((enemy) => {
                 if(util.hits(bullet,enemy)) {
                     game.addPoint(enemy.radius);
                     game.blasts.push(new Blast(enemy.position,enemy.radius));
@@ -105,34 +97,28 @@ function animate() {
                 }
             });
             bullet.update();
-        }
-        else {
-            game.bullets.splice(i, 1);
-        }
+        } 
+        else game.bullets.splice(i, 1)
     });
 
+    // movement of ship
     game.ship.update();
 
+    // movement of enemy
     game.enemys.forEach((enemy)=> {
-        if (enemy.position.y > HEIGHT+enemy.radius) {
-            enemy.reset();
-        }
+        if (enemy.position.y > HEIGHT+enemy.radius) enemy.reset();
+
         else if(util.hits(enemy,game.ship)) {
             game.over = true;
             game.stop();
             enemy.update();
         }
-        else {
-            enemy.update();
-        }
+        else enemy.update();
     });
 
+    // blast update
     game.blasts.forEach((blast,i)=> {
-        if (blast.finished) {
-            game.blasts.splice(i,1);
-        }
-        else {
-            blast.update();
-        }
+        if (blast.finished) game.blasts.splice(i,1); 
+        else blast.update(); 
     });
 }

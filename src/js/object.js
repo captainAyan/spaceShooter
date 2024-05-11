@@ -153,7 +153,6 @@ function Enemy(position,radius) {
 /**
  * star class
  */
-
 function Star() {
     this.radius = util.randomIntFromRange(100,200)/100;
     this.dr = 1;
